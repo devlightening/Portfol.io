@@ -1,24 +1,26 @@
-import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
-import { About } from "@/components/sections/About";
-import { Contact } from "@/components/sections/Contact";
-import { Hero } from "@/components/sections/Hero";
-import { Projects } from "@/components/sections/Projects";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import About from "@/components/sections/About";
+import Contact from "@/components/sections/Contact";
+import Experience from "@/components/sections/Experience";
+import Hero from "@/components/sections/Hero";
+import Projects from "@/components/sections/Projects";
+import { I18nProvider } from "@/lib/site";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <main className="mx-auto w-full max-w-6xl px-6">
-        <Hero />
-        <div className="h-px w-full bg-white/10" />
-        <About />
-        <div className="h-px w-full bg-white/10" />
-        <Projects />
-        <div className="h-px w-full bg-white/10" />
-        <Contact />
-        <Footer />
-      </main>
-    </div>
+    <I18nProvider>
+      <div className="min-h-screen">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Experience />
+          <Projects />
+          <Contact />
+          <Footer />
+        </main>
+      </div>
+    </I18nProvider>
   );
 }

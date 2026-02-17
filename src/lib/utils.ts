@@ -1,72 +1,63 @@
-
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { useEffect, useState } from "react";
+import type { Variants } from "framer-motion";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export type MotionVariant = {
-  hidden: Record<string, unknown>;
-  show: Record<string, unknown>;
-};
+export function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
 
-export const fadeUp = {
-  container: (stagger = 0.08, delayChildren = 0) =>
-    ({
-      hidden: {},
-      show: {
-        transition: {
-          staggerChildren: stagger,
-          delayChildren,
-        },
-      },
-    }) satisfies MotionVariant,
-  item: (y = 16, duration = 0.5) =>
-    ({
-      hidden: { opacity: 0, y },
-      show: {
-        opacity: 1,
-        y: 0,
-        transition: {
-          duration,
-          ease: [0.22, 1, 0.36, 1],
-        },
-      },
-    }) satisfies MotionVariant,
-};
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = () => setReduced(mq.matches);
+    onChange();
+    if (mq.addEventListener) {
+      mq.addEventListener("change", onChange);
+      return () => mq.removeEventListener("change", onChange);
+    }
+    mq.addListener(onChange);
+    return () => mq.removeListener(onChange);
+  }, []);
 
-export const lineReveal = {
-  line: (delay = 0, duration = 0.6) =>
-    ({
-      hidden: { y: "110%" },
-      show: {
-        y: "0%",
-        transition: {
-          delay,
-          duration,
-          ease: [0.22, 1, 0.36, 1],
-        },
-      },
-    }) satisfies MotionVariant,
-};
-
-export const scaleIn = {
-  item: (from = 0.96, duration = 0.45) =>
-    ({
-      hidden: { opacity: 0, scale: from },
-      show: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-          duration,
-          ease: [0.22, 1, 0.36, 1],
-        },
-      },
-    }) satisfies MotionVariant,
-};
-
-export function prefersReducedMotion() {
-  if (typeof window === "undefined") return false;
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return reduced;
 }
+
+export const motionPresets = {
+  stagger: (stagger = 0.08, delay = 0): Variants => ({
+    hidden: {},
+    show: { transition: { staggerChildren: stagger, delayChildren: delay } },
+  }),
+
+  fadeUp: (y = 16, d = 0.6): Variants => ({
+    hidden: { opacity: 0, y },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: d, ease: EASE },
+    },
+  }),
+
+  fadeIn: (d = 0.6): Variants => ({
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { duration: d, ease: EASE } },
+  }),
+
+  scaleIn: (d = 0.7): Variants => ({
+    hidden: { opacity: 0, scale: 0.98 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: d, ease: EASE },
+    },
+  }),
+
+  lineReveal: (d = 0.8): Variants => ({
+    hidden: { y: "120%" },
+    show: { y: "0%", transition: { duration: d, ease: EASE } },
+  }),
+};

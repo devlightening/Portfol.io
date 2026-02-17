@@ -2,23 +2,23 @@
 
 import React, { useEffect, useRef } from "react";
 import Lenis from "lenis";
-import { prefersReducedMotion } from "@/lib/utils";
+import { usePrefersReducedMotion } from "@/lib/utils";
 
 type LenisProviderProps = {
   children: React.ReactNode;
 };
 
 export function LenisProvider({ children }: LenisProviderProps) {
+  const reduced = usePrefersReducedMotion();
   const lenisRef = useRef<Lenis | null>(null);
   const rafIdRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    if (reduced) return;
 
     const lenis = new Lenis({
       duration: 1.1,
       smoothWheel: true,
-      smoothTouch: false,
       wheelMultiplier: 1,
       touchMultiplier: 1,
     });
@@ -39,7 +39,7 @@ export function LenisProvider({ children }: LenisProviderProps) {
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, []);
+  }, [reduced]);
 
   return <>{children}</>;
 }

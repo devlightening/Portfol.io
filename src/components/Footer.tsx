@@ -1,41 +1,24 @@
+"use client";
 
-import React from "react";
-import { site } from "@/lib/site";
-import { cn } from "@/lib/utils";
+import { site, useI18n } from "@/lib/site";
 
-export function Footer() {
-  const year = new Date().getFullYear();
-
-  const linkClassName = cn(
-    "text-xs tracking-[0.18em] text-white/55 transition-colors",
-    "hover:text-white/85"
-  );
-
+export default function Footer() {
+  useI18n();
   return (
-    <footer className="mt-24 border-t border-white/10">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
-        <div className="text-xs tracking-[0.18em] text-white/45">
-          © {year} {site.name}
+    <footer className="border-t border-white/10">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-3 px-5 py-8 md:flex-row md:items-center md:justify-between">
+        <div className="text-[11px] tracking-[0.22em] text-white/45">
+          © {new Date().getFullYear()} {site.name}. ALL RIGHTS RESERVED.
         </div>
 
-        <div className="flex flex-wrap items-center gap-6">
-          <a
-            href={site.socials.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClassName}
-          >
+        <div className="flex gap-4 text-[11px] tracking-[0.22em] text-white/60">
+          <a className="hover:text-white" href={site.socials.github} target="_blank" rel="noreferrer">
             GITHUB
           </a>
-          <a
-            href={site.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClassName}
-          >
+          <a className="hover:text-white" href={site.socials.linkedin} target="_blank" rel="noreferrer">
             LINKEDIN
           </a>
-          <a href={site.socials.email} className={linkClassName}>
+          <a className="hover:text-white" href={`mailto:${site.socials.email}`}>
             EMAIL
           </a>
         </div>

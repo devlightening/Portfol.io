@@ -1,120 +1,132 @@
-
 "use client";
 
-import React, { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { site } from "@/lib/site";
-import { cn } from "@/lib/utils";
+import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { site, useI18n } from "@/lib/site";
+import { motionPresets } from "@/lib/utils";
+import { Section } from "@/components/ui/Section";
+import { MagneticButton } from "@/components/ui/MagneticButton";
+import { useToast } from "@/components/ui/Toast";
 
-export function Contact() {
+export default function Contact() {
   const [copied, setCopied] = useState(false);
+  const emailText = useMemo(() => site.socials.email, []);
+  const toast = useToast();
+  const { locale, t } = useI18n();
 
-  const emailAddress = useMemo(() => {
-    const value = site.socials.email;
-    if (value.startsWith("mailto:")) return value.replace("mailto:", "");
-    return value;
-  }, []);
-
-  const onCopy = async () => {
+  const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(emailAddress);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1100);
+      await navigator.clipboard.writeText(emailText);
     } catch {
       const ta = document.createElement("textarea");
-      ta.value = emailAddress;
+      ta.value = emailText;
       document.body.appendChild(ta);
       ta.select();
       document.execCommand("copy");
       document.body.removeChild(ta);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1100);
     }
+    setCopied(true);
+    toast.push(t("contact.toastCopied"));
+    window.setTimeout(() => setCopied(false), 1400);
   };
 
-  const primaryButton = cn(
-    "inline-flex h-11 items-center justify-center rounded-full border border-white/15",
-    "bg-white/5 px-5 text-xs font-medium tracking-[0.22em]",
-    "text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-  );
-
   return (
-    <section className="py-16 sm:py-24" id="contact">
-      <div className="grid gap-10 border-y border-white/10 py-12 sm:grid-cols-12 sm:gap-8">
-        <div className="sm:col-span-4">
-          <h2 className="text-xs font-medium tracking-[0.3em] text-white/70">
-            CONTACT
-          </h2>
-        </div>
-
-        <div className="sm:col-span-8">
-          <div className="max-w-3xl">
-            <h3
-              className="font-[var(--font-display)] uppercase text-white/90"
-              style={{ fontSize: "clamp(28px, 4.2vw, 56px)", lineHeight: 1.05 }}
-            >
-              Let’s build something precise.
-            </h3>
-            <p className="mt-4 text-base leading-8 text-white/65 sm:text-lg">
-              If you have a project, a role, or a product that needs a sharper
-              interface—send a note. I respond quickly.
-            </p>
+    <Section id="contact" eyebrow={t("contact.eyebrow")} kicker={t("contact.kicker")}>
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
+        variants={motionPresets.stagger(0.08, 0.1)}
+        className="grid grid-cols-12 gap-8"
+      >
+        <motion.div variants={motionPresets.fadeUp(14, 0.8)} className="col-span-12 md:col-span-7">
+          <div className="text-[clamp(26px,3vw,42px)] leading-tight tracking-[-0.02em] text-white/90">
+            Open to internships, junior roles, and real-world backend challenges.
+          </div>
+          <div className="mt-4 text-sm leading-relaxed text-white/70">
+            If you have a project, a role, or a problem worth solving, I’d love to talk.
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a href={site.socials.email} className={primaryButton}>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <MagneticButton
+              onClick={() => window.open(`mailto:${site.socials.email}`, "_self")}
+              className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-[11px] tracking-[0.28em] text-white/80 transition hover:border-white/35 hover:bg-white/10 hover:text-white"
+            >
               EMAIL
-            </a>
-            <a
-              href={site.socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={primaryButton}
+            </MagneticButton>
+            <MagneticButton
+              onClick={() => window.open(site.socials.github, "_blank", "noreferrer")}
+              className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-[11px] tracking-[0.28em] text-white/80 transition hover:border-white/35 hover:bg-white/10 hover:text-white"
             >
-              LINKEDIN
-            </a>
-            <a
-              href={site.socials.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={primaryButton}
+              <span className="inline-flex items-center gap-2">
+                <span>GITHUB</span>
+                <motion.span
+                  aria-hidden
+                  animate={{ x: [0, 2, 0] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                  className="opacity-80"
+                >
+                  ↗
+                </motion.span>
+              </span>
+            </MagneticButton>
+            <MagneticButton
+              onClick={() => window.open(site.socials.linkedin, "_blank", "noreferrer")}
+              className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-[11px] tracking-[0.28em] text-white/80 transition hover:border-white/35 hover:bg-white/10 hover:text-white"
             >
-              GITHUB
-            </a>
+              <span className="inline-flex items-center gap-2">
+                <span>LINKEDIN</span>
+                <motion.span
+                  aria-hidden
+                  animate={{ x: [0, 2, 0] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                  className="opacity-80"
+                >
+                  ↗
+                </motion.span>
+              </span>
+            </MagneticButton>
 
-            <div className="relative ml-1">
-              <button
-                type="button"
-                onClick={onCopy}
-                className={cn(
-                  "group inline-flex h-11 items-center justify-center rounded-full",
-                  "border border-white/10 bg-white/[0.03] px-4",
-                  "text-[11px] tracking-[0.22em] text-white/60",
-                  "transition-colors hover:bg-white/[0.06] hover:text-white/80",
-                  "active:scale-[0.98]"
-                )}
-              >
-                COPY EMAIL
-              </button>
+            <MagneticButton
+              onClick={copyEmail}
+              className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-[11px] tracking-[0.28em] text-white/80 transition hover:border-white/35 hover:bg-white/10 hover:text-white"
+            >
+              {copied ? t("contact.copied") : t("contact.copy")}
+            </MagneticButton>
+          </div>
 
-              <AnimatePresence>
-                {copied ? (
-                  <motion.div
-                    key="copied"
-                    initial={{ opacity: 0, y: 6, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -4, scale: 0.98 }}
-                    transition={{ duration: 0.18 }}
-                    className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full border border-white/12 bg-black/60 px-3 py-1 text-[10px] tracking-[0.22em] text-white/70 backdrop-blur"
-                  >
-                    COPIED
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
+          <div className="mt-10 text-[11px] tracking-[0.24em] text-white/55">
+            AVAILABLE FOR INTERNSHIPS / JUNIOR BACKEND ROLES / FREELANCE
+          </div>
+        </motion.div>
+
+        <motion.div
+          variants={motionPresets.fadeUp(14, 0.8)}
+          className="col-span-12 md:col-span-5"
+        >
+          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+            <div className="text-[12px] tracking-[0.32em] text-white/55">DETAILS</div>
+            <div className="mt-4 space-y-3 text-sm text-white/70">
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-white/50">Name</span>
+                <span className="text-white/85">{site.name}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-white/50">Role</span>
+                <span className="text-white/85">{site.role[locale]}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-white/50">Location</span>
+                <span className="text-white/85">{site.location[locale]}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-white/50">Email</span>
+                <span className="text-white/85">{site.socials.email}</span>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </Section>
   );
 }

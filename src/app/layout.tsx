@@ -1,19 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { GlobalOverlay } from "@/components/ui/GlobalOverlay";
 import { LenisProvider } from "@/components/ui/LenisProvider";
+import { ToastProvider } from "@/components/ui/Toast";
 import { site } from "@/lib/site";
-
-const displayFont = Space_Grotesk({
-  variable: "--font-display",
-  subsets: ["latin"],
-});
-
-const bodyFont = Inter({
-  variable: "--font-body",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -39,12 +29,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${displayFont.variable} ${bodyFont.variable} antialiased`}
+        className="antialiased"
       >
         <GlobalOverlay />
-        <LenisProvider>{children}</LenisProvider>
+        <ToastProvider>
+          <LenisProvider>{children}</LenisProvider>
+        </ToastProvider>
       </body>
     </html>
   );
