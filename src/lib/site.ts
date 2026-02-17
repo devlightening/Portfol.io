@@ -22,17 +22,20 @@ export const site = {
   },
   aboutLong: {
     en: {
-      paragraphs: [
-        "I’m Halil Yıldırım, a Junior .NET Backend Developer focused on building scalable, maintainable APIs with ASP.NET Core. I care about clean architecture and pragmatic delivery—shipping features that remain reliable in production.",
-        "I’ve built RESTful services with authentication (JWT/cookies), real-time capabilities with SignalR, and microservice-style local environments using Docker Compose. I’m especially interested in event-driven systems using RabbitMQ and Redis, and I enjoy CQRS-style patterns where they fit.",
-        "Right now I’m strengthening my distributed-systems fundamentals while building production-minded projects and iterating fast with clean, testable code.",
+     paragraphs: [
+        "I am a senior Computer Engineering student at Tarsus University and a Backend Developer with a strong passion for designing scalable, resilient, and high-performance distributed systems.",
+        "My primary technical focus is on the .NET ecosystem, where I specialize in building backend-heavy applications using Microservices architecture, Domain-Driven Design (DDD), and CQRS. I have hands-on experience with modern backend technologies such as RabbitMQ for asynchronous messaging, Docker for containerization, and Redis for distributed caching.",
+        "I am highly interested in Event-Driven Architectures, system observability, and clean architectural principles. I strive to write maintainable, well-structured code and continuously improve system reliability and performance in agile development environments.",
+        "I am motivated to contribute to large-scale, production-grade systems where engineering quality, architectural thinking, and continuous learning are valued.",
       ],
     },
     tr: {
       paragraphs: [
-        "Ben Halil Yıldırım, ASP.NET Core ile ölçeklenebilir ve sürdürülebilir API’ler geliştirmeye odaklanan Junior .NET Backend Developer’ım. Temiz mimariyi ve üretimde sağlam kalan çözümler üretmeyi önemsiyorum.",
-        "REST servisleri, kimlik doğrulama (JWT/cookie), SignalR ile gerçek zamanlı özellikler ve Docker Compose ile mikroservis benzeri yerel kurulumlar üzerinde çalıştım. Event-driven sistemler (RabbitMQ, Redis) ve uygun yerlerde CQRS tarzı yaklaşımlar ilgi alanım.",
-        "Şu anda dağıtık sistemler temellerimi güçlendirirken, proje geliştirme hızımı koruyup kod kalitesini yüksek tutmaya odaklanıyorum.",
+        "Tarsus Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim ve ölçeklenebilir, dayanıklı ve yüksek performanslı dağıtık sistemler tasarlamaya odaklanan bir .NET Backend Geliştiricisiyim.",
+        "Ana uzmanlık alanım .NET ekosistemi (ASP.NET Core). Backend odaklı ürünler geliştirirken Clean Architecture, Mikroservis yaklaşımları, Domain-Driven Design (DDD) ve uygun senaryolarda CQRS prensiplerini; anlaşılabilirlik ve sürdürülebilirlik sağladığı ölçüde kullanıyorum. RESTful API tasarımı, veri sözleşmeleri ve servis sınırlarının üretim koşullarına uygun kurgulanması konularında rahatım.",
+        "RabbitMQ ile event-driven / message-based iletişim, Docker ile konteyner tabanlı geliştirme ve dağıtım akışları, Redis ile dağıtık önbellekleme konularında uygulamalı deneyime sahibim. Ayrıca EventStore benzeri yaklaşımlar ve gerçek sistemlerde tutarlılık, eventual consistency ve güvenilirlik (reliability) pattern’lerinin getirdiği trade-off’lar ilgimi çekiyor.",
+        "Mühendislik kalitesine önem veriyorum: gözlemlenebilirlik (log/metric/trace), net sahiplik, defensive coding ve performans odaklı tasarım. Zamanla ekip büyüdükçe ölçeklenebilen ve güvenle evrilebilen kod tabanları üretmeyi hedefliyorum.",
+        "Mimari düşünmenin, sürekli öğrenmenin ve ölçülebilir sistem güvenilirliğinin değer gördüğü production-grade platformlarda; tasarımdan yayına kadar sorumluluk alarak katkı sağlamaya motiveyim.",
       ],
     },
   },

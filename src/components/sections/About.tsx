@@ -11,6 +11,7 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 export default function About() {
   const reduced = usePrefersReducedMotion();
   const { locale } = useI18n();
+  const aboutText = site.aboutLong[locale].paragraphs.join(" ");
   const ref = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -32,16 +33,28 @@ export default function About() {
 
   const principles = [
     {
-      title: "Clarity first",
-      desc: "Every choice reduces cognitive load and increases intent.",
+      title: "Signal over noise",
+      desc: "I design APIs and flows that stay readable under pressure—clear contracts, fewer surprises, higher confidence.",
     },
     {
-      title: "Architecture matters",
-      desc: "I prefer clean boundaries, testable components, and predictable systems.",
+      title: "Reliability is the product",
+      desc: "Graceful failure paths, idempotency, and defensive defaults—because production is the real benchmark.",
     },
     {
-      title: "Performance is a feature",
-      desc: "Fast interactions and reliability build trust.",
+      title: "Boundaries, not layers",
+      desc: "Clean domain boundaries and modular services where it matters—DDD when it helps, simplicity when it doesn’t.",
+    },
+    {
+      title: "Events > assumptions",
+      desc: "I lean toward event-driven thinking: RabbitMQ, Redis, and eventual consistency—optimized for change and scale.",
+    },
+    {
+      title: "Observability by design",
+      desc: "Logs, metrics, traces—built-in from day one. If you can’t measure it, you can’t trust it.",
+    },
+    {
+      title: "Ship, then sharpen",
+      desc: "Fast iteration with production-minded quality—small releases, clean refactors, continuous improvement.",
     },
   ];
 
@@ -55,21 +68,13 @@ export default function About() {
           variants={motionPresets.stagger(0.08, 0.05)}
           className="col-span-12 md:col-span-7"
         >
-          <div className="space-y-4">
-            {site.aboutLong[locale].paragraphs.map((text, idx) => {
-              const opacity = idx === 0 ? p1 : idx === 1 ? p2 : idx === 2 ? p3 : 1;
-              return (
-                <motion.p
-                  key={idx}
-                  variants={motionPresets.fadeUp(14, 0.8)}
-                  style={{ opacity }}
-                  className="max-w-[65ch] text-sm leading-relaxed text-white/70"
-                >
-                  {text}
-                </motion.p>
-              );
-            })}
-          </div>
+          <motion.p
+            variants={motionPresets.fadeUp(14, 0.8)}
+            style={{ opacity: p1 }}
+            className="max-w-[65ch] text-sm leading-relaxed text-white/70"
+          >
+            {aboutText}
+          </motion.p>
 
           <motion.div
             variants={motionPresets.fadeUp(14, 0.8)}
@@ -104,17 +109,19 @@ export default function About() {
           <motion.div style={{ y: panelY, opacity: panelOpacity, filter: panelFilter as unknown as string }} className="mt-4">
             <SpotlightCard>
               <div className="divide-y divide-white/10">
-                <div className="p-5 blur-[0.6px] text-white/55 transition group-hover:blur-0 group-hover:text-white/85">
+                <div className="p-5 text-white/55 [filter:blur(0.9px)] transition-all duration-500 group-hover:text-white/95 group-hover:[filter:blur(0px)] group-hover:[text-shadow:0_0_18px_rgba(255,255,255,0.12)]">
                   {principles.map((p) => (
                     <motion.div
                       key={p.title}
                       variants={motionPresets.fadeUp(12, 0.75)}
-                      className="py-4 first:pt-0 last:pb-0"
+                      whileHover={{ x: 6 }}
+                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                      className="group/item py-4 first:pt-0 last:pb-0"
                     >
-                      <div className="text-sm tracking-[0.08em]">
+                      <div className="text-sm tracking-[0.10em] transition-colors duration-300 group-hover/item:text-white">
                         {p.title}
                       </div>
-                      <div className="mt-2 text-sm leading-relaxed">
+                      <div className="mt-2 text-sm leading-relaxed transition-colors duration-300 group-hover/item:text-white/90">
                         {p.desc}
                       </div>
                     </motion.div>

@@ -3,23 +3,25 @@ import "./globals.css";
 import { GlobalOverlay } from "@/components/ui/GlobalOverlay";
 import { LenisProvider } from "@/components/ui/LenisProvider";
 import { ToastProvider } from "@/components/ui/Toast";
-import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: {
-    default: site.name,
-    template: `%s — ${site.name}`,
+  title: "portfol.io",
+  applicationName: "portfol.io",
+  icons: {
+    icon: [{ url: "/porfol.io_Logo.jpg", type: "image/jpeg" }],
+    shortcut: ["/porfol.io_Logo.jpg"],
+    apple: [{ url: "/porfol.io_Logo.jpg", type: "image/jpeg" }],
   },
-  description: `${site.role} based in ${site.location}.`,
+  description: "Junior .NET Backend Developer based in Türkiye.",
   openGraph: {
     type: "website",
-    title: site.name,
-    description: `${site.role} based in ${site.location}.`,
+    title: "portfol.io",
+    description: "Junior .NET Backend Developer based in Türkiye.",
   },
   twitter: {
     card: "summary_large_image",
-    title: site.name,
-    description: `${site.role} based in ${site.location}.`,
+    title: "portfol.io",
+    description: "Junior .NET Backend Developer based in Türkiye.",
   },
 };
 
