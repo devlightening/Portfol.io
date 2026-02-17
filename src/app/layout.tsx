@@ -8,9 +8,9 @@ export const metadata: Metadata = {
   title: "portfol.io",
   applicationName: "portfol.io",
   icons: {
-    icon: [{ url: "/porfol.io_Logo.jpg", type: "image/jpeg" }],
-    shortcut: ["/porfol.io_Logo.jpg"],
-    apple: [{ url: "/porfol.io_Logo.jpg", type: "image/jpeg" }],
+    icon: [{ url: "/porfol.io_Logo.png?v=2", type: "image/png" }],
+    shortcut: ["/porfol.io_Logo.png?v=2"],
+    apple: [{ url: "/porfol.io_Logo.png?v=2", type: "image/png" }],
   },
   description: "Junior .NET Backend Developer based in Türkiye.",
   openGraph: {
