@@ -1,66 +1,21 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { Activity, Braces, Network } from "lucide-react";
 import { site, useI18n } from "@/lib/site";
-import { motionPresets, usePrefersReducedMotion } from "@/lib/utils";
+import { motionPresets } from "@/lib/utils";
 import { Section } from "@/components/ui/Section";
 import { Pill } from "@/components/ui/Pill";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 
+const focusIcons = [Network, Braces, Activity] as const;
+
 export default function About() {
-  const reduced = usePrefersReducedMotion();
-  const { locale } = useI18n();
-  const aboutText = site.aboutLong[locale].paragraphs.join(" ");
-  const ref = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.85", "end 0.15"],
-  });
-
-  const p1 = useTransform(scrollYProgress, [0.0, 0.2], reduced ? [1, 1] : [0, 1]);
-  const p2 = useTransform(scrollYProgress, [0.15, 0.35], reduced ? [1, 1] : [0, 1]);
-  const p3 = useTransform(scrollYProgress, [0.3, 0.55], reduced ? [1, 1] : [0, 1]);
-  const chips = useTransform(scrollYProgress, [0.38, 0.62], reduced ? [1, 1] : [0, 1]);
-
-  const panelY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [16, -16]);
-  const panelOpacity = useTransform(scrollYProgress, [0.15, 0.45], reduced ? [1, 1] : [0.75, 1]);
-  const panelFilter = useTransform(
-    scrollYProgress,
-    [0.1, 0.45],
-    reduced ? ["blur(0px)", "blur(0px)"] : ["blur(8px)", "blur(0px)"]
-  );
-
-  const principles = [
-    {
-      title: "Signal over noise",
-      desc: "I design APIs and flows that stay readable under pressure—clear contracts, fewer surprises, higher confidence.",
-    },
-    {
-      title: "Reliability is the product",
-      desc: "Graceful failure paths, idempotency, and defensive defaults—because production is the real benchmark.",
-    },
-    {
-      title: "Boundaries, not layers",
-      desc: "Clean domain boundaries and modular services where it matters—DDD when it helps, simplicity when it doesn’t.",
-    },
-    {
-      title: "Events > assumptions",
-      desc: "I lean toward event-driven thinking: RabbitMQ, Redis, and eventual consistency—optimized for change and scale.",
-    },
-    {
-      title: "Observability by design",
-      desc: "Logs, metrics, traces—built-in from day one. If you can’t measure it, you can’t trust it.",
-    },
-    {
-      title: "Ship, then sharpen",
-      desc: "Fast iteration with production-minded quality—small releases, clean refactors, continuous improvement.",
-    },
-  ];
+  const { locale, t } = useI18n();
 
   return (
-    <Section id="about" eyebrow="ABOUT" kicker="BIO / TECH / PRINCIPLES">
-      <div ref={ref} className="grid grid-cols-12 gap-8">
+    <Section id="about" eyebrow={t("about.eyebrow")} kicker={t("about.kicker")}>
+      <div className="grid grid-cols-12 gap-8">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -68,33 +23,36 @@ export default function About() {
           variants={motionPresets.stagger(0.08, 0.05)}
           className="col-span-12 md:col-span-7"
         >
-          <motion.p
-            variants={motionPresets.fadeUp(14, 0.8)}
-            style={{ opacity: p1 }}
-            className="max-w-[65ch] text-sm leading-relaxed text-white/70"
-          >
-            {aboutText}
-          </motion.p>
+          <div className="space-y-5">
+            {site.aboutLong[locale].paragraphs.map((paragraph) => (
+              <motion.p
+                key={paragraph}
+                variants={motionPresets.fadeUp(14, 0.8)}
+                className="max-w-[68ch] text-sm leading-relaxed text-white/72"
+              >
+                {paragraph}
+              </motion.p>
+            ))}
+          </div>
 
-          <motion.div
-            variants={motionPresets.fadeUp(14, 0.8)}
-            style={{ opacity: chips, y: reduced ? 0 : undefined }}
-            className="mt-10"
-          >
-            <div className="text-[12px] tracking-[0.32em] text-white/55">TECH</div>
-            <motion.div
-              variants={motionPresets.stagger(0.05, 0)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-20% 0px -20% 0px" }}
-              className="mt-4 flex flex-wrap gap-2"
-            >
-              {site.stack.map((t) => (
-                <motion.div key={t} variants={motionPresets.fadeUp(10, 0.6)}>
-                  <Pill>{t.toUpperCase()}</Pill>
-                </motion.div>
+          <motion.div variants={motionPresets.fadeUp(14, 0.8)} className="mt-10">
+            <div className="text-[12px] tracking-[0.32em] text-white/55">{t("about.stack")}</div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {site.stack.map((item) => (
+                <Pill key={item}>{item.toUpperCase()}</Pill>
               ))}
-            </motion.div>
+            </div>
+          </motion.div>
+
+          <motion.div variants={motionPresets.fadeUp(14, 0.8)} className="mt-7">
+            <div className="text-[12px] tracking-[0.32em] text-white/45">{t("about.extraStack")}</div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {site.extraStack.map((item) => (
+                <Pill key={item} className="bg-white/[0.025] text-white/58">
+                  {item.toUpperCase()}
+                </Pill>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
 
@@ -105,31 +63,38 @@ export default function About() {
           variants={motionPresets.stagger(0.08, 0.08)}
           className="col-span-12 md:col-span-5"
         >
-          <div className="text-[12px] tracking-[0.32em] text-white/55">PRINCIPLES</div>
-          <motion.div style={{ y: panelY, opacity: panelOpacity, filter: panelFilter as unknown as string }} className="mt-4">
-            <SpotlightCard>
-              <div className="divide-y divide-white/10">
-                <div className="p-5 text-white/55 [filter:blur(0.9px)] transition-all duration-500 group-hover:text-white/95 group-hover:[filter:blur(0px)] group-hover:[text-shadow:0_0_18px_rgba(255,255,255,0.12)]">
-                  {principles.map((p) => (
-                    <motion.div
-                      key={p.title}
-                      variants={motionPresets.fadeUp(12, 0.75)}
-                      whileHover={{ x: 6 }}
-                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                      className="group/item py-4 first:pt-0 last:pb-0"
-                    >
-                      <div className="text-sm tracking-[0.10em] transition-colors duration-300 group-hover/item:text-white">
-                        {p.title}
+          <div className="text-[12px] tracking-[0.32em] text-white/55">{t("about.principles")}</div>
+          <SpotlightCard className="mt-4">
+            <div className="divide-y divide-white/10 p-5">
+              {site.focusAreas.map((item, index) => {
+                const Icon = focusIcons[index] ?? Braces;
+
+                return (
+                  <motion.div
+                    key={item.title.en}
+                    variants={motionPresets.fadeUp(12, 0.75)}
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    className="py-5 first:pt-0 last:pb-0"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/12 bg-white/5 text-white/75">
+                        <Icon size={15} strokeWidth={1.7} />
                       </div>
-                      <div className="mt-2 text-sm leading-relaxed transition-colors duration-300 group-hover/item:text-white/90">
-                        {p.desc}
+                      <div>
+                        <div className="text-sm tracking-[0.08em] text-white/90">
+                          {item.title[locale]}
+                        </div>
+                        <div className="mt-2 text-sm leading-relaxed text-white/68">
+                          {item.desc[locale]}
+                        </div>
                       </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </SpotlightCard>
-          </motion.div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </SpotlightCard>
         </motion.div>
       </div>
     </Section>

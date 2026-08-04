@@ -5,23 +5,26 @@ import { LenisProvider } from "@/components/ui/LenisProvider";
 import { ToastProvider } from "@/components/ui/Toast";
 
 export const metadata: Metadata = {
-  title: "portfol.io",
-  applicationName: "portfol.io",
+  title: "Halil Yıldırım | .NET Backend Developer",
+  applicationName: "Halil Yıldırım Portfolio",
   icons: {
     icon: [{ url: "/porfol.io_Logo.png?v=2", type: "image/png" }],
     shortcut: ["/porfol.io_Logo.png?v=2"],
     apple: [{ url: "/porfol.io_Logo.png?v=2", type: "image/png" }],
   },
-  description: "Junior .NET Backend Developer based in Türkiye.",
+  description:
+    "Junior .NET Backend Developer focused on clean architecture, microservices, distributed systems, and reliable API design.",
   openGraph: {
     type: "website",
-    title: "portfol.io",
-    description: "Junior .NET Backend Developer based in Türkiye.",
+    title: "Halil Yıldırım | .NET Backend Developer",
+    description:
+      "Portfolio of Halil Yıldırım: .NET backend, microservices, distributed systems, and production-minded API architecture.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "portfol.io",
-    description: "Junior .NET Backend Developer based in Türkiye.",
+    title: "Halil Yıldırım | .NET Backend Developer",
+    description:
+      "Portfolio of Halil Yıldırım: .NET backend, microservices, distributed systems, and production-minded API architecture.",
   },
 };
 
@@ -32,9 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className="antialiased"
-      >
+      <body className="antialiased">
         <GlobalOverlay />
         <ToastProvider>
           <LenisProvider>{children}</LenisProvider>

@@ -3,6 +3,7 @@
 import { createContext, createElement, useContext, useEffect, useMemo, useState } from "react";
 
 export type Locale = "en" | "tr";
+export type LocalizedString = Record<Locale, string>;
 
 const STORAGE_KEY = "portfolio_locale_v1";
 
@@ -16,31 +17,71 @@ export const site = {
     en: "Türkiye",
     tr: "Türkiye",
   },
+  headline: {
+    en: "Production-minded backend systems, built with clean boundaries.",
+    tr: "Temiz sınırlarla tasarlanan, üretim odaklı backend sistemler.",
+  },
   tagline: {
-    en: "Building reliable backend systems with clean architecture, strong fundamentals, and a bias for shipping.",
-    tr: "Clean architecture, güçlü temeller ve üretime odaklı bir yaklaşımla güvenilir backend sistemler geliştiriyorum.",
+    en: "I build .NET APIs, microservice patterns, and data flows with a focus on reliability, observability, and maintainable architecture.",
+    tr: ".NET API'ler, mikroservis desenleri ve veri akışlarını; güvenilirlik, gözlemlenebilirlik ve sürdürülebilir mimari odağıyla geliştiriyorum.",
   },
   aboutLong: {
     en: {
-     paragraphs: [
-        "I am a senior Computer Engineering student at Tarsus University and a Backend Developer with a strong passion for designing scalable, resilient, and high-performance distributed systems.",
-        "My primary technical focus is on the .NET ecosystem, where I specialize in building backend-heavy applications using Microservices architecture, Domain-Driven Design (DDD), and CQRS. I have hands-on experience with modern backend technologies such as RabbitMQ for asynchronous messaging, Docker for containerization, and Redis for distributed caching.",
-        "I am highly interested in Event-Driven Architectures, system observability, and clean architectural principles. I strive to write maintainable, well-structured code and continuously improve system reliability and performance in agile development environments.",
-        "I am motivated to contribute to large-scale, production-grade systems where engineering quality, architectural thinking, and continuous learning are valued.",
+      paragraphs: [
+        "I am a senior Computer Engineering student at Tarsus University and a backend developer focused on scalable, resilient, and observable distributed systems.",
+        "My strongest area is the .NET ecosystem: ASP.NET Core APIs, Clean Architecture, Domain-Driven Design, CQRS, MediatR, API gateway patterns, and service-to-service communication models.",
+        "I work hands-on with RabbitMQ, MassTransit, Redis, Docker, PostgreSQL, MongoDB, EventStoreDB, and monitoring concepts such as health checks, correlation IDs, logging, and traceability.",
+        "I care about clear contracts, defensive coding, measurable reliability, and codebases that can keep evolving as requirements and teams grow.",
       ],
     },
     tr: {
       paragraphs: [
-        "Tarsus Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim ve ölçeklenebilir, dayanıklı ve yüksek performanslı dağıtık sistemler tasarlamaya odaklanan bir .NET Backend Geliştiricisiyim.",
-        "Ana uzmanlık alanım .NET ekosistemi (ASP.NET Core). Backend odaklı ürünler geliştirirken Clean Architecture, Mikroservis yaklaşımları, Domain-Driven Design (DDD) ve uygun senaryolarda CQRS prensiplerini; anlaşılabilirlik ve sürdürülebilirlik sağladığı ölçüde kullanıyorum. RESTful API tasarımı, veri sözleşmeleri ve servis sınırlarının üretim koşullarına uygun kurgulanması konularında rahatım.",
-        "RabbitMQ ile event-driven / message-based iletişim, Docker ile konteyner tabanlı geliştirme ve dağıtım akışları, Redis ile dağıtık önbellekleme konularında uygulamalı deneyime sahibim. Ayrıca EventStore benzeri yaklaşımlar ve gerçek sistemlerde tutarlılık, eventual consistency ve güvenilirlik (reliability) pattern’lerinin getirdiği trade-off’lar ilgimi çekiyor.",
-        "Mühendislik kalitesine önem veriyorum: gözlemlenebilirlik (log/metric/trace), net sahiplik, defensive coding ve performans odaklı tasarım. Zamanla ekip büyüdükçe ölçeklenebilen ve güvenle evrilebilen kod tabanları üretmeyi hedefliyorum.",
-        "Mimari düşünmenin, sürekli öğrenmenin ve ölçülebilir sistem güvenilirliğinin değer gördüğü production-grade platformlarda; tasarımdan yayına kadar sorumluluk alarak katkı sağlamaya motiveyim.",
+        "Tarsus Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim; ölçeklenebilir, dayanıklı ve gözlemlenebilir dağıtık sistemlere odaklanan bir backend geliştiricisiyim.",
+        "En güçlü alanım .NET ekosistemi: ASP.NET Core API'ler, Clean Architecture, Domain-Driven Design, CQRS, MediatR, API gateway desenleri ve servisler arası iletişim modelleri.",
+        "RabbitMQ, MassTransit, Redis, Docker, PostgreSQL, MongoDB, EventStoreDB ve health check, correlation ID, logging, traceability gibi gözlemlenebilirlik konularında uygulamalı çalışmalar yapıyorum.",
+        "Net sözleşmeler, defensive coding, ölçülebilir güvenilirlik ve ekip büyüdükçe evrilebilen kod tabanları üretmeye önem veriyorum.",
       ],
     },
   },
-  stack: [".NET", "PostgreSQL", "Docker", "RabbitMQ", "Redis", "EventStore"],
-  extraStack: ["TypeScript", "React Native"],
+  heroStats: [
+    {
+      value: "39",
+      label: { en: "public repos", tr: "public repo" },
+    },
+    {
+      value: ".NET",
+      label: { en: "backend focus", tr: "backend odağı" },
+    },
+    {
+      value: "2026",
+      label: { en: "active portfolio", tr: "aktif portfolio" },
+    },
+  ],
+  focusAreas: [
+    {
+      title: { en: "Distributed systems", tr: "Dağıtık sistemler" },
+      desc: {
+        en: "Microservice patterns, service boundaries, messaging, and data consistency trade-offs.",
+        tr: "Mikroservis desenleri, servis sınırları, mesajlaşma ve veri tutarlılığı trade-off'ları.",
+      },
+    },
+    {
+      title: { en: "Backend architecture", tr: "Backend mimarisi" },
+      desc: {
+        en: "Clean Architecture, DDD, CQRS, MediatR, repository/unit-of-work patterns, and API design.",
+        tr: "Clean Architecture, DDD, CQRS, MediatR, repository/unit-of-work desenleri ve API tasarımı.",
+      },
+    },
+    {
+      title: { en: "Operational reliability", tr: "Operasyonel güvenilirlik" },
+      desc: {
+        en: "Health checks, traceability, correlation IDs, caching, Dockerized services, and resilient messaging.",
+        tr: "Health check, traceability, correlation ID, cache, Docker tabanlı servisler ve dayanıklı mesajlaşma.",
+      },
+    },
+  ],
+  stack: [".NET", "ASP.NET Core", "PostgreSQL", "Docker", "RabbitMQ", "Redis", "EventStoreDB"],
+  extraStack: ["MongoDB", "MassTransit", "YARP", "Ocelot", "TypeScript", "React Native"],
   socials: {
     github: "https://github.com/devlightening/",
     linkedin: "https://www.linkedin.com/in/0001myprofile",
@@ -61,21 +102,44 @@ export const dictionaries: Record<Locale, Dict> = {
     "nav.contact": "Contact",
 
     "hero.kicker": "SYSTEMS / ARCHITECTURE / SHIPPING",
-    "hero.about": "ABOUT",
+    "hero.about": "POSITIONING",
     "hero.scroll": "SCROLL",
+    "hero.github": "GitHub",
+    "hero.email": "Email",
+
+    "about.eyebrow": "ABOUT",
+    "about.kicker": "BIO / TECH / PRINCIPLES",
+    "about.principles": "ENGINEERING FOCUS",
+    "about.stack": "CORE STACK",
+    "about.extraStack": "ALSO USING",
+
+    "experience.eyebrow": "EXPERIENCE",
+    "experience.kicker": "INTERNSHIP / DELIVERY / TEAMWORK",
+    "experience.title": "Real-world team experience, from debugging to delivery.",
+    "experience.body": "A focused internship where I supported shipped software, learned team workflows, and strengthened practical backend and web fundamentals.",
 
     "projects.eyebrow": "PROJECTS",
-    "projects.kicker": "FEATURED + REPOS",
+    "projects.kicker": "FEATURED + GITHUB ARCHIVE",
     "projects.featured": "FEATURED",
-    "projects.more": "MORE REPOS",
-    "projects.view": "VIEW",
+    "projects.more": "SELECTED REPOS",
+    "projects.view": "VIEW REPO",
     "projects.open": "OPEN ON GITHUB",
+    "projects.repo": "REPOSITORY",
+    "projects.githubArchive": "View full GitHub archive",
 
     "contact.eyebrow": "CONTACT",
-    "contact.kicker": "LET’S BUILD",
+    "contact.kicker": "LET'S BUILD",
+    "contact.title": "Open to junior backend roles, internships, and production-minded projects.",
+    "contact.body": "If your team needs someone who enjoys APIs, distributed systems, and clean delivery, I would be happy to talk.",
     "contact.copy": "COPY EMAIL",
-    "contact.copied": "COPIED ✓",
+    "contact.copied": "COPIED",
     "contact.toastCopied": "Copied to clipboard",
+    "contact.availability": "AVAILABLE FOR INTERNSHIPS / JUNIOR BACKEND ROLES / FREELANCE",
+    "contact.details": "DETAILS",
+    "contact.name": "Name",
+    "contact.role": "Role",
+    "contact.location": "Location",
+    "contact.email": "Email",
   },
   tr: {
     "nav.about": "Hakkımda",
@@ -84,21 +148,44 @@ export const dictionaries: Record<Locale, Dict> = {
     "nav.contact": "İletişim",
 
     "hero.kicker": "SİSTEMLER / MİMARİ / ÜRETİM",
-    "hero.about": "HAKKIMDA",
+    "hero.about": "KONUMLANDIRMA",
     "hero.scroll": "KAYDIR",
+    "hero.github": "GitHub",
+    "hero.email": "E-posta",
+
+    "about.eyebrow": "HAKKIMDA",
+    "about.kicker": "BİYOGRAFİ / TEKNOLOJİ / PRENSİPLER",
+    "about.principles": "MÜHENDİSLİK ODAĞI",
+    "about.stack": "ANA STACK",
+    "about.extraStack": "AYRICA",
+
+    "experience.eyebrow": "DENEYİM",
+    "experience.kicker": "STAJ / ÜRETİM / EKİP ÇALIŞMASI",
+    "experience.title": "Debugging'den teslim sürecine uzanan gerçek ekip deneyimi.",
+    "experience.body": "Yayındaki yazılımlara destek verdiğim, ekip iş akışlarını öğrendiğim ve pratik backend/web temellerimi güçlendirdiğim odaklı bir staj deneyimi.",
 
     "projects.eyebrow": "PROJELER",
-    "projects.kicker": "ÖNE ÇIKANLAR + REPO'LAR",
+    "projects.kicker": "ÖNE ÇIKANLAR + GITHUB ARŞİVİ",
     "projects.featured": "ÖNE ÇIKANLAR",
-    "projects.more": "DİĞER REPO'LAR",
-    "projects.view": "GÖRÜNTÜLE",
-    "projects.open": "GITHUB’DA AÇ",
+    "projects.more": "SEÇİLİ REPO'LAR",
+    "projects.view": "REPO'YU GÖR",
+    "projects.open": "GITHUB'DA AÇ",
+    "projects.repo": "REPOSITORY",
+    "projects.githubArchive": "Tüm GitHub arşivini gör",
 
     "contact.eyebrow": "İLETİŞİM",
-    "contact.kicker": "HADİ YAPALIM",
+    "contact.kicker": "BİRLİKTE GELİŞTİRELİM",
+    "contact.title": "Junior backend rollerine, staj fırsatlarına ve üretim odaklı projelere açığım.",
+    "contact.body": "API'ler, dağıtık sistemler ve temiz teslim süreçleriyle ilgilenen bir ekip arıyorsanız konuşmaktan memnun olurum.",
     "contact.copy": "E-POSTAYI KOPYALA",
-    "contact.copied": "KOPYALANDI ✓",
+    "contact.copied": "KOPYALANDI",
     "contact.toastCopied": "Panoya kopyalandı",
+    "contact.availability": "STAJ / JUNIOR BACKEND ROLLERİ / FREELANCE İÇİN UYGUN",
+    "contact.details": "DETAYLAR",
+    "contact.name": "İsim",
+    "contact.role": "Rol",
+    "contact.location": "Konum",
+    "contact.email": "E-posta",
   },
 };
 
@@ -116,13 +203,18 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
-    if (saved === "en" || saved === "tr") setLocaleState(saved);
+    if (saved === "en" || saved === "tr") {
+      window.setTimeout(() => setLocaleState(saved), 0);
+    }
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const setLocale = (l: Locale) => {
     setLocaleState(l);
     window.localStorage.setItem(STORAGE_KEY, l);
-    document.documentElement.lang = l;
   };
 
   const value = useMemo<I18nValue>(() => {
@@ -143,7 +235,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     return { locale, setLocale, t, ta };
   }, [locale]);
 
-  return createElement(I18nContext.Provider, { value, children });
+  return createElement(I18nContext.Provider, { value }, children);
 }
 
 export function useI18n() {

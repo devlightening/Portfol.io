@@ -13,11 +13,11 @@ export function Section({ id, eyebrow, kicker, className, children }: SectionPro
     <section id={id} className={className ?? ""}>
       <div className="mx-auto max-w-[1200px] px-5 py-16 md:py-24">
         {eyebrow || kicker ? (
-          <div className="flex items-end justify-between gap-6 border-b border-white/10 pb-6">
+          <div className="flex flex-col items-start justify-between gap-3 border-b border-white/10 pb-6 sm:flex-row sm:items-end sm:gap-6">
             <div className="text-[12px] tracking-[0.32em] text-white/55">
               {(eyebrow ?? "").toUpperCase()}
             </div>
-            <div className="text-[11px] tracking-[0.28em] text-white/40">
+            <div className="max-w-full text-[11px] tracking-[0.24em] text-white/40 sm:text-right sm:tracking-[0.28em]">
               {(kicker ?? "").toUpperCase()}
             </div>
           </div>
