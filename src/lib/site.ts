@@ -29,7 +29,7 @@ export const site = {
     en: {
       paragraphs: [
         "I am a senior Computer Engineering student at Tarsus University and a backend developer focused on scalable, resilient, and observable distributed systems.",
-        "My internships at Kivi Software and BOTAŞ gave me hands-on exposure to software delivery, enterprise workflows, authorized security assessment, SOC operations, and OT/SCADA security.",
+        "My internships at Kivi Yazılım and BOTAŞ gave me hands-on exposure to software delivery, enterprise workflows, authorized security assessment, SOC operations, and OT/SCADA security.",
         "My strongest area is the .NET ecosystem: ASP.NET Core APIs, Clean Architecture, Domain-Driven Design, CQRS, MediatR, API gateway patterns, and service-to-service communication models.",
         "I work hands-on with RabbitMQ, MassTransit, Redis, Docker, PostgreSQL, MongoDB, EventStoreDB, and monitoring concepts such as health checks, correlation IDs, logging, and traceability.",
         "I care about clear contracts, defensive coding, measurable reliability, and codebases that can keep evolving as requirements and teams grow.",
@@ -38,7 +38,7 @@ export const site = {
     tr: {
       paragraphs: [
         "Tarsus Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim; ölçeklenebilir, dayanıklı ve gözlemlenebilir dağıtık sistemlere odaklanan bir backend geliştiricisiyim.",
-        "Kivi Software ve BOTAŞ stajlarım sayesinde yazılım teslimi, kurumsal iş akışları, yetkili güvenlik değerlendirmeleri, SOC operasyonları ve OT/SCADA güvenliği alanlarında uygulamalı deneyim kazandım.",
+        "Kivi Yazılım ve BOTAŞ stajlarım sayesinde yazılım teslimi, kurumsal iş akışları, yetkili güvenlik değerlendirmeleri, SOC operasyonları ve OT/SCADA güvenliği alanlarında uygulamalı deneyim kazandım.",
         "En güçlü alanım .NET ekosistemi: ASP.NET Core API'ler, Clean Architecture, Domain-Driven Design, CQRS, MediatR, API gateway desenleri ve servisler arası iletişim modelleri.",
         "RabbitMQ, MassTransit, Redis, Docker, PostgreSQL, MongoDB, EventStoreDB ve health check, correlation ID, logging, traceability gibi gözlemlenebilirlik konularında uygulamalı çalışmalar yapıyorum.",
         "Net sözleşmeler, defensive coding, ölçülebilir güvenilirlik ve ekip büyüdükçe evrilebilen kod tabanları üretmeye önem veriyorum.",
@@ -127,7 +127,7 @@ export const dictionaries: Record<Locale, Dict> = {
     "experience.eyebrow": "EXPERIENCE",
     "experience.kicker": "SOFTWARE / CYBERSECURITY / TEAMWORK",
     "experience.title": "Two internships, one wider engineering perspective.",
-    "experience.body": "From software delivery at Kivi to critical-infrastructure security at BOTAŞ, each role strengthened a different part of how I design and evaluate systems.",
+    "experience.body": "From software delivery at Kivi Yazılım to critical-infrastructure security at BOTAŞ, each role strengthened a different part of how I design and evaluate systems.",
     "experience.roles": "internship roles",
     "experience.cyberDays": "cybersecurity days",
 
@@ -182,7 +182,7 @@ export const dictionaries: Record<Locale, Dict> = {
     "experience.eyebrow": "DENEYİM",
     "experience.kicker": "YAZILIM / SİBER GÜVENLİK / EKİP ÇALIŞMASI",
     "experience.title": "İki staj, daha geniş bir mühendislik bakışı.",
-    "experience.body": "Kivi'deki yazılım tesliminden BOTAŞ'taki kritik altyapı güvenliğine uzanan bu deneyimler, sistemleri tasarlama ve değerlendirme yaklaşımımın farklı yönlerini güçlendirdi.",
+    "experience.body": "Kivi Yazılım'daki yazılım tesliminden BOTAŞ'taki kritik altyapı güvenliğine uzanan bu deneyimler, sistemleri tasarlama ve değerlendirme yaklaşımımın farklı yönlerini güçlendirdi.",
     "experience.roles": "staj rolü",
     "experience.cyberDays": "siber güvenlik günü",
 

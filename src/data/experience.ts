@@ -83,7 +83,10 @@ export const experience: Experience[] = [
     ],
   },
   {
-    company: "Kivi Strategic Planning & Software",
+    company: "Kivi Yazılım",
+    companyUrl: "https://kividigi.com/",
+    logo: "/kivi-logo.png",
+    logoAlt: "Kivi Yazılım logo",
     role: {
       en: "Software Development Intern",
       tr: "Yazılım Geliştirme Stajyeri",

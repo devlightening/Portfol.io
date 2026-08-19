@@ -99,11 +99,37 @@ export default function TerminalIntro() {
     window.setTimeout(() => inputRef.current?.focus(), reduced ? 0 : 220);
   }, [reduced]);
 
+  const closeTerminal = useCallback(
+    (target?: string) => {
+      window.sessionStorage.setItem(SEEN_KEY, "1");
+      setClosing(true);
+
+      window.setTimeout(
+        () => {
+          setOpen(false);
+          setClosing(false);
+          if (target) {
+            window.setTimeout(() => {
+              document.getElementById(target)?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }, 80);
+          }
+        },
+        reduced ? 0 : 360
+      );
+    },
+    [reduced]
+  );
+
   useEffect(() => {
-    const hasSeen = window.sessionStorage.getItem(SEEN_KEY) === "1";
-    setReady(true);
-    setOpen(!hasSeen);
-    if (!hasSeen) focusInput();
+    const initializeTimer = window.setTimeout(() => {
+      const hasSeen = window.sessionStorage.getItem(SEEN_KEY) === "1";
+      setReady(true);
+      setOpen(!hasSeen);
+      if (!hasSeen) focusInput();
+    }, 0);
 
     const handleOpen = () => {
       setEntries([]);
@@ -114,7 +140,10 @@ export default function TerminalIntro() {
     };
 
     window.addEventListener(OPEN_EVENT, handleOpen);
-    return () => window.removeEventListener(OPEN_EVENT, handleOpen);
+    return () => {
+      window.clearTimeout(initializeTimer);
+      window.removeEventListener(OPEN_EVENT, handleOpen);
+    };
   }, [focusInput]);
 
   useEffect(() => {
@@ -131,29 +160,11 @@ export default function TerminalIntro() {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", closeOnEscape);
     };
-  });
+  }, [closeTerminal, open]);
 
   useEffect(() => {
     outputRef.current?.scrollTo({ top: outputRef.current.scrollHeight, behavior: "smooth" });
   }, [entries]);
-
-  const closeTerminal = (target?: string) => {
-    window.sessionStorage.setItem(SEEN_KEY, "1");
-    setClosing(true);
-
-    window.setTimeout(
-      () => {
-        setOpen(false);
-        setClosing(false);
-        if (target) {
-          window.setTimeout(() => {
-            document.getElementById(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
-          }, 80);
-        }
-      },
-      reduced ? 0 : 360
-    );
-  };
 
   const appendEntry = (command: string, lines: string[], tone?: TerminalEntry["tone"]) => {
     entryId.current += 1;
