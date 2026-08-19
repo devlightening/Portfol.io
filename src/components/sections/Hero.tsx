@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Github, Mail } from "lucide-react";
+import { ArrowDown, Github, Mail, SquareTerminal } from "lucide-react";
 import { site, useI18n } from "@/lib/site";
 import { cn, motionPresets, usePrefersReducedMotion } from "@/lib/utils";
 import { Pill } from "@/components/ui/Pill";
@@ -93,6 +93,14 @@ export default function Hero() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap gap-3 md:justify-end">
+                  <button
+                    type="button"
+                    onClick={() => window.dispatchEvent(new Event("portfolio:open-terminal"))}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[11px] tracking-[0.24em] text-white/92 transition hover:border-white/45 hover:bg-white/15"
+                  >
+                    <SquareTerminal size={14} strokeWidth={1.8} />
+                    {t("hero.console").toUpperCase()}
+                  </button>
                   <a
                     href={site.socials.github}
                     target="_blank"

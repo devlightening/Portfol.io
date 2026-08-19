@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useSpring } from "framer-motion";
-import { Github, Mail } from "lucide-react";
+import { Github, Mail, SquareTerminal } from "lucide-react";
 import { site, useI18n } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +17,10 @@ export default function Navbar() {
 
   const goContact = () => {
     scrollTo("contact");
+  };
+
+  const openConsole = () => {
+    window.dispatchEvent(new Event("portfolio:open-terminal"));
   };
 
   return (
@@ -76,6 +80,16 @@ export default function Navbar() {
             </nav>
 
             <div className="hidden h-7 w-px bg-white/10 md:block" />
+
+            <button
+              type="button"
+              onClick={openConsole}
+              title={t("hero.console")}
+              aria-label={t("hero.console")}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 transition hover:border-white/35 hover:bg-white/10 hover:text-white"
+            >
+              <SquareTerminal size={15} strokeWidth={1.7} />
+            </button>
 
             <a
               href={site.socials.github}

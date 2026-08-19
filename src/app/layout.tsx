@@ -5,7 +5,7 @@ import { LenisProvider } from "@/components/ui/LenisProvider";
 import { ToastProvider } from "@/components/ui/Toast";
 
 export const metadata: Metadata = {
-  title: "Halil Yıldırım | .NET Backend Developer",
+  title: "Halil Yıldırım | .NET Backend & Cybersecurity",
   applicationName: "Halil Yıldırım Portfolio",
   icons: {
     icon: [{ url: "/porfol.io_Logo.png?v=2", type: "image/png" }],
@@ -13,18 +13,18 @@ export const metadata: Metadata = {
     apple: [{ url: "/porfol.io_Logo.png?v=2", type: "image/png" }],
   },
   description:
-    "Junior .NET Backend Developer focused on clean architecture, microservices, distributed systems, and reliable API design.",
+    "Portfolio of Halil Yıldırım: .NET backend systems, clean architecture, distributed systems, secure API design, and cybersecurity experience.",
   openGraph: {
     type: "website",
-    title: "Halil Yıldırım | .NET Backend Developer",
+    title: "Halil Yıldırım | .NET Backend & Cybersecurity",
     description:
-      "Portfolio of Halil Yıldırım: .NET backend, microservices, distributed systems, and production-minded API architecture.",
+      "Backend engineering, distributed systems, secure API design, and cybersecurity experience across SOC and OT/SCADA fundamentals.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Halil Yıldırım | .NET Backend Developer",
+    title: "Halil Yıldırım | .NET Backend & Cybersecurity",
     description:
-      "Portfolio of Halil Yıldırım: .NET backend, microservices, distributed systems, and production-minded API architecture.",
+      "Backend engineering, distributed systems, secure API design, and cybersecurity experience across SOC and OT/SCADA fundamentals.",
   },
 };
 

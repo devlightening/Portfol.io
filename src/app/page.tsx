@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import TerminalIntro from "@/components/TerminalIntro";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 import Experience from "@/components/sections/Experience";
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <I18nProvider>
       <div className="min-h-screen">
+        <TerminalIntro />
         <Navbar />
         <main>
           <Hero />

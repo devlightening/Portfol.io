@@ -18,17 +18,18 @@ export const site = {
     tr: "Türkiye",
   },
   headline: {
-    en: "Production-minded backend systems, built with clean boundaries.",
-    tr: "Temiz sınırlarla tasarlanan, üretim odaklı backend sistemler.",
+    en: "Security-aware backend systems, built with clean boundaries.",
+    tr: "Temiz sınırlar ve güvenlik bilinciyle tasarlanan backend sistemler.",
   },
   tagline: {
-    en: "I build .NET APIs, microservice patterns, and data flows with a focus on reliability, observability, and maintainable architecture.",
-    tr: ".NET API'ler, mikroservis desenleri ve veri akışlarını; güvenilirlik, gözlemlenebilirlik ve sürdürülebilir mimari odağıyla geliştiriyorum.",
+    en: "I build .NET APIs and distributed systems with a focus on reliability, observability, maintainable architecture, and security-minded delivery.",
+    tr: ".NET API'ler ve dağıtık sistemleri; güvenilirlik, gözlemlenebilirlik, sürdürülebilir mimari ve güvenlik bilinci odağıyla geliştiriyorum.",
   },
   aboutLong: {
     en: {
       paragraphs: [
         "I am a senior Computer Engineering student at Tarsus University and a backend developer focused on scalable, resilient, and observable distributed systems.",
+        "My internships at Kivi Software and BOTAŞ gave me hands-on exposure to software delivery, enterprise workflows, authorized security assessment, SOC operations, and OT/SCADA security.",
         "My strongest area is the .NET ecosystem: ASP.NET Core APIs, Clean Architecture, Domain-Driven Design, CQRS, MediatR, API gateway patterns, and service-to-service communication models.",
         "I work hands-on with RabbitMQ, MassTransit, Redis, Docker, PostgreSQL, MongoDB, EventStoreDB, and monitoring concepts such as health checks, correlation IDs, logging, and traceability.",
         "I care about clear contracts, defensive coding, measurable reliability, and codebases that can keep evolving as requirements and teams grow.",
@@ -37,6 +38,7 @@ export const site = {
     tr: {
       paragraphs: [
         "Tarsus Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim; ölçeklenebilir, dayanıklı ve gözlemlenebilir dağıtık sistemlere odaklanan bir backend geliştiricisiyim.",
+        "Kivi Software ve BOTAŞ stajlarım sayesinde yazılım teslimi, kurumsal iş akışları, yetkili güvenlik değerlendirmeleri, SOC operasyonları ve OT/SCADA güvenliği alanlarında uygulamalı deneyim kazandım.",
         "En güçlü alanım .NET ekosistemi: ASP.NET Core API'ler, Clean Architecture, Domain-Driven Design, CQRS, MediatR, API gateway desenleri ve servisler arası iletişim modelleri.",
         "RabbitMQ, MassTransit, Redis, Docker, PostgreSQL, MongoDB, EventStoreDB ve health check, correlation ID, logging, traceability gibi gözlemlenebilirlik konularında uygulamalı çalışmalar yapıyorum.",
         "Net sözleşmeler, defensive coding, ölçülebilir güvenilirlik ve ekip büyüdükçe evrilebilen kod tabanları üretmeye önem veriyorum.",
@@ -49,12 +51,12 @@ export const site = {
       label: { en: "public repos", tr: "public repo" },
     },
     {
-      value: ".NET",
-      label: { en: "backend focus", tr: "backend odağı" },
+      value: "02",
+      label: { en: "internships", tr: "staj deneyimi" },
     },
     {
-      value: "2026",
-      label: { en: "active portfolio", tr: "aktif portfolio" },
+      value: ".NET",
+      label: { en: "core focus", tr: "ana odak" },
     },
   ],
   focusAreas: [
@@ -73,15 +75,23 @@ export const site = {
       },
     },
     {
-      title: { en: "Operational reliability", tr: "Operasyonel güvenilirlik" },
+      title: { en: "Security-aware delivery", tr: "Güvenlik odaklı teslim" },
       desc: {
-        en: "Health checks, traceability, correlation IDs, caching, Dockerized services, and resilient messaging.",
-        tr: "Health check, traceability, correlation ID, cache, Docker tabanlı servisler ve dayanıklı mesajlaşma.",
+        en: "Secure API thinking informed by web assessment, SOC workflows, network visibility, and OT/SCADA fundamentals.",
+        tr: "Web değerlendirmesi, SOC iş akışları, ağ görünürlüğü ve OT/SCADA temelleriyle beslenen güvenli API yaklaşımı.",
       },
     },
   ],
   stack: [".NET", "ASP.NET Core", "PostgreSQL", "Docker", "RabbitMQ", "Redis", "EventStoreDB"],
-  extraStack: ["MongoDB", "MassTransit", "YARP", "Ocelot", "TypeScript", "React Native"],
+  extraStack: [
+    "MongoDB",
+    "MassTransit",
+    "YARP",
+    "Ocelot",
+    "TypeScript",
+    "OWASP ZAP",
+    "Wireshark",
+  ],
   socials: {
     github: "https://github.com/devlightening/",
     linkedin: "https://www.linkedin.com/in/0001myprofile",
@@ -106,6 +116,7 @@ export const dictionaries: Record<Locale, Dict> = {
     "hero.scroll": "SCROLL",
     "hero.github": "GitHub",
     "hero.email": "Email",
+    "hero.console": "Open console",
 
     "about.eyebrow": "ABOUT",
     "about.kicker": "BIO / TECH / PRINCIPLES",
@@ -114,9 +125,17 @@ export const dictionaries: Record<Locale, Dict> = {
     "about.extraStack": "ALSO USING",
 
     "experience.eyebrow": "EXPERIENCE",
-    "experience.kicker": "INTERNSHIP / DELIVERY / TEAMWORK",
-    "experience.title": "Real-world team experience, from debugging to delivery.",
-    "experience.body": "A focused internship where I supported shipped software, learned team workflows, and strengthened practical backend and web fundamentals.",
+    "experience.kicker": "SOFTWARE / CYBERSECURITY / TEAMWORK",
+    "experience.title": "Two internships, one wider engineering perspective.",
+    "experience.body": "From software delivery at Kivi to critical-infrastructure security at BOTAŞ, each role strengthened a different part of how I design and evaluate systems.",
+    "experience.roles": "internship roles",
+    "experience.cyberDays": "cybersecurity days",
+
+    "terminal.title": "HALIL.Y / PORTFOLIO CONSOLE",
+    "terminal.status": "SYSTEM READY",
+    "terminal.hint": "Run --info to inspect the interface, or --enter to launch the portfolio.",
+    "terminal.placeholder": "type a command",
+    "terminal.close": "Close console",
 
     "projects.eyebrow": "PROJECTS",
     "projects.kicker": "FEATURED + GITHUB ARCHIVE",
@@ -152,6 +171,7 @@ export const dictionaries: Record<Locale, Dict> = {
     "hero.scroll": "KAYDIR",
     "hero.github": "GitHub",
     "hero.email": "E-posta",
+    "hero.console": "Konsolu aç",
 
     "about.eyebrow": "HAKKIMDA",
     "about.kicker": "BİYOGRAFİ / TEKNOLOJİ / PRENSİPLER",
@@ -160,9 +180,17 @@ export const dictionaries: Record<Locale, Dict> = {
     "about.extraStack": "AYRICA",
 
     "experience.eyebrow": "DENEYİM",
-    "experience.kicker": "STAJ / ÜRETİM / EKİP ÇALIŞMASI",
-    "experience.title": "Debugging'den teslim sürecine uzanan gerçek ekip deneyimi.",
-    "experience.body": "Yayındaki yazılımlara destek verdiğim, ekip iş akışlarını öğrendiğim ve pratik backend/web temellerimi güçlendirdiğim odaklı bir staj deneyimi.",
+    "experience.kicker": "YAZILIM / SİBER GÜVENLİK / EKİP ÇALIŞMASI",
+    "experience.title": "İki staj, daha geniş bir mühendislik bakışı.",
+    "experience.body": "Kivi'deki yazılım tesliminden BOTAŞ'taki kritik altyapı güvenliğine uzanan bu deneyimler, sistemleri tasarlama ve değerlendirme yaklaşımımın farklı yönlerini güçlendirdi.",
+    "experience.roles": "staj rolü",
+    "experience.cyberDays": "siber güvenlik günü",
+
+    "terminal.title": "HALIL.Y / PORTFOLYO KONSOLU",
+    "terminal.status": "SİSTEM HAZIR",
+    "terminal.hint": "Arayüzü incelemek için --info, portfolyoyu açmak için --enter komutunu çalıştır.",
+    "terminal.placeholder": "bir komut yaz",
+    "terminal.close": "Konsolu kapat",
 
     "projects.eyebrow": "PROJELER",
     "projects.kicker": "ÖNE ÇIKANLAR + GITHUB ARŞİVİ",
